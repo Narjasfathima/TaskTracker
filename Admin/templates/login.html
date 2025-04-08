@@ -1,0 +1,50 @@
+{% comment %} {% extends 'temp/page.html' %}
+{% block base %}
+<!-- Page Header Start -->
+    <div class="container-fluid page-header" style="height: 200px">
+        <h1 class="display-3 text-uppercase text-white mb-3">Login</h1>
+        <div class="d-inline-flex text-white">
+            <h6 class="text-uppercase m-0"><a class="text-white" href="">Home</a></h6>
+            <h6 class="text-body m-0 px-3">/</h6>
+            <h6 class="text-uppercase text-body m-0">Login</h6>
+        </div>
+    </div>
+    <!-- Page Header Start -->
+
+
+    <!-- About Start -->
+    <div class="container-fluid py-5">
+        <div class="container pt-5 pb-3">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+{#                   SECTION#} {% endcomment %}
+<form method="post">
+	{% csrf_token %}
+	<table class="table table-responsive table-dark">
+		<tr>
+			<td>Username</td>
+			<td>{{form.username}}</td>
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td>{{form.password}}</td>
+		</tr>
+		<tr>
+            <td></td>
+			<td><input type="submit" name="" value="Login" class="btn btn-success"></td>
+		</tr>
+        <tr>
+            <td></td>
+            {% comment %} <td><a href="/login/forget/" class="btn btn-info btn-sm">Forget Password</a> </td> {% endcomment %}
+        </tr>
+	</table>
+	
+</form>
+      {% comment %} {#                    END SECTION#}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+{% endblock %} {% endcomment %}

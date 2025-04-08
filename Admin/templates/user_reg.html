@@ -1,0 +1,13 @@
+{% extends 'admin_nav.html' %}
+{% block content %}
+
+<form action="" class="form-group " method="post" >
+  {% csrf_token %}
+  <table class="table">
+      {{form.as_table}}
+  </table>
+  <div class="text-center">
+      <button class="btn btn-info">Submit</button>
+  </div>
+</form>
+{% endblock content%}

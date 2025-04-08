@@ -1,0 +1,31 @@
+{% extends 'admin_nav.html' %}
+
+{% block content %}
+
+
+<h3 class="container-fluid text-dark font-weight-bold text-center mt-3">Users List</h3>
+
+{% if user %}
+
+<div class="row jumbotron ">
+{% for i in user %}
+
+
+            <div class="col-md-12 col-sm-12 mt-3">
+                <ul class="list-group borderless">
+                    <li class="list-group-item"><b>Name</b> :{{i.first_name}} {{i.last_name}}</li>
+                    <li class="list-group-item"><b>Email</b> :{{i.email}}</li>
+                    <li class="list-group-item"><b>Username</b> :{{i.username}}</li>
+                    <li class="list-group-item list-group-item-sm">
+                        <a href="{% url 'edit_user' i.id %}" class="btn btn-sm btn-warning">EDIT</a>
+                        <a href="{% url 'delete_user' i.id %}" class="btn btn-sm btn-danger" onclick=" return confirm('Are you sure?')">DELETE</a>
+                    </li>
+                </ul>
+            </div>
+        
+        {% endfor %}    
+    </div>
+    {% endif %}
+</div>
+<!-- </div> -->
+{% endblock content %}
