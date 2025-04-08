@@ -39,22 +39,34 @@
                           {% comment %} <a class="dropdown-item" href="#">Link 3</a> {% endcomment %}
                         </div>
                       </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">CART
-                            {% comment %} <span class=" badge badge-info">{{ccount}}</span> {% endcomment %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                          Admin
                         </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="" class="nav-link">MyOrders
-                            {% comment %} <span class=" badge badge-info">{{ocount}}</span> {% endcomment %}
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" href="{% url 'admin_reg' %}">New Admin</a>
+                          <a class="dropdown-item" href="{% url 'admin_list' %}">Manage Admin</a>
+                          {% comment %} <a class="dropdown-item" href="#">Link 3</a> {% endcomment %}
+                        </div>
+                      </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                          Task
                         </a>
-                    </li>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" href="{% url 'add_task' %}">Add Task</a>
+                          <a class="dropdown-item" href="{% url 'task_list' %}">Manage Task</a>
+                          <a class="dropdown-item" href="{% url 'completed_task' %}">Completed Task</a>
+                          {% comment %} <a class="dropdown-item" href="#">Link 3</a> {% endcomment %}
+                        </div>
+                      </li>
+                   
                 </ul>
                 <!-- <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="text" placeholder="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form> -->
-                    <a href=""><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">LOGOUT</button></a>
+                    <a href="{% url 'signin' %}"><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">LOGOUT</button></a>
             </div>
         </nav>
     {% block content %}

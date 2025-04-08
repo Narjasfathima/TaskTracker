@@ -1,0 +1,26 @@
+{% extends 'admin_nav.html' %}
+
+{% block content %}
+
+
+<h3 class="container-fluid text-dark font-weight-bold text-center mt-3">Task Report</h3>
+
+
+
+<div class="row jumbotron ">
+
+
+            <div class="col-md-12 col-sm-12 mt-3">
+                <ul class="list-group borderless">
+                    <li class="list-group-item"><b>Title</b> :{{i.title}} </li>
+                    <li class="list-group-item"><b>Due Date</b> :{{i.due_date}}</li>
+                    <li class="list-group-item"><b>Assigned To</b> :{{i.assigned_to.first_name}} {{i.assigned_to.last_name}}</li>
+                    <li class="list-group-item"><b>Completion Report</b> :{{i.completion_report}}</li>
+                    <li class="list-group-item"><b>Worked Hours</b> :{{i.worked_hours}}</li>
+                </ul>
+            </div>
+        
+    
+</div>
+<!-- </div> -->
+{% endblock content %}

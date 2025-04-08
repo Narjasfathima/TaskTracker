@@ -23,16 +23,9 @@ class SignInView(FormView):
             user = authenticate(request,username=uname,password=pwd)
 
             if user is not None:
-                if user.user_type == 'Super_Admin':
+                if user.is_superuser or user.user_type == 'Admin':
                     login(request,user)
                     return redirect('super_admin_home')
-                
-                elif user.user_type == 'Admin':
-                    login(request,user)
-                    return redirect('admin_home')
-                else:
-                    login(request,user)
-                    return redirect('user_home')
                         
             else:
                 print("error")
