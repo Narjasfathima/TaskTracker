@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     'drf_yasg',
-    
+
     'Admin',
     'Users'
 ]
@@ -77,8 +77,8 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=int(env('ACCESS_TOKEN_EXPIRY'))),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=int(env('REFRESH_TOKEN_EXPIRY'))),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=int(60)),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=int(2400)),
 }
 
 
@@ -123,3 +123,15 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'Admin.CustomUser'
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+            'description': 'JWT Authorization header using the Bearer scheme. Example: "Bearer {token}"',
+        }
+    },
+    'USE_SESSION_AUTH': False,
+}

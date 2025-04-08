@@ -7,6 +7,8 @@ from rest_framework.views import APIView
 from rest_framework import serializers
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.contrib.auth.hashers import check_password
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 from Users.api.serializers.authserializer import LoginSerializer, LogoutSerializer
 from Admin.models import CustomUser, Task
@@ -20,6 +22,14 @@ class LoginView(APIView):
     def check_user_password(self, user, password):
         return check_password(password, user.password)
 
+
+    @swagger_auto_schema(
+        request_body=LoginSerializer,
+        responses={
+            201: openapi.Response('Success'),
+            404: openapi.Response('Failed', LoginSerializer)
+        }
+    )
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         
@@ -31,10 +41,10 @@ class LoginView(APIView):
         username = serializer.validated_data['username']
         password = serializer.validated_data['password']
         
-        if not CustomUser.all_objects.filter(username=username, user_type='User').exists():
+        if not CustomUser.objects.filter(username=username).exists():
             return Response({'message': 'Invalid Username'}, status=status.HTTP_400_BAD_REQUEST)
         
-        user = CustomUser.all_objects.get(username=username, user_type='User')
+        user = CustomUser.objects.get(username=username)
         
         if not self.check_user_password(user, password):
             return Response({'message': 'Invalid Password'}, status=status.HTTP_400_BAD_REQUEST)
