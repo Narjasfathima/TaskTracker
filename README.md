@@ -50,7 +50,7 @@ Setup Instructions
 
 -> JWT authentication, Authorize using following
 
-    Bearer 'accecctoken'
+    Bearer 'accesstoken'
 
 API Endpoints:-
 
