@@ -21,13 +21,13 @@
     {% block nav %}
     {% endblock nav %}
         <nav class="navbar navbar-expand-sm navbar-light bg-secondary">
-            <a class="navbar-brand" href="#">Task Tracker</a>
+            <a class="navbar-brand text-light" href="#">Task Tracker</a>
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
                 aria-expanded="false" aria-label="Toggle navigation"></button>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="">HOME <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{% url 'super_admin_home' %}">HOME <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -71,5 +71,31 @@
         </nav>
     {% block content %}
     {% endblock content %}  
+    
+    <div style="position: fixed;">
+    
+      {% if messages %}
+      {% for i in messages %}
+          {% if i.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <strong>{{i}}</strong>
+                  <button type="button" class="close" style="display: inline;" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          {% endif %}
+      
+          {% if i.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <strong>{{i}}</strong>
+                  <button type="button" class="close" style="display: inline;" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          {% endif %}
+      
+  {% endfor %}
+  {% endif %}
+  </div>
 </body>
 </html>

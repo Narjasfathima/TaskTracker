@@ -3,6 +3,7 @@ from django.views.generic import View, FormView, TemplateView
 from django.contrib.auth import login,authenticate,logout
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
+from django.contrib import messages
 
 from Admin.forms import SignInForm
 
@@ -28,7 +29,8 @@ class SignInView(FormView):
                     return redirect('super_admin_home')
                         
             else:
-                print("error")
+                print("Invalid Username and password")
+                messages.error(request,"Invalid Username and password!!")
                 return redirect('signin')
         return render(request,"login.html",{"form":form_data})
     

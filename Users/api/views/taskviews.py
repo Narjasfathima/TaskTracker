@@ -54,6 +54,8 @@ class TaskReportView(APIView):
 
     def get(self, request, pk, format=None):
         task_instance = Task.objects.get(id=pk)
-        serializer = self.serializer_class(task_instance, many=False)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-        
+        if task_instance.status == "Completed":
+            serializer = self.serializer_class(task_instance, many=False)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response({"message":"Task Cannot be completed"}, status=status.HTTP_400_BAD_REQUEST)
+            
